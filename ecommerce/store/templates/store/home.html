@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Store</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo">MyStore</h1>
+        <ul class="nav-links">
+            {% for category in categories %}
+            <li>
+                <a href="#{{ category.slug }}">
+                    {{ category.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    <div class="container">
+
+        {% for category in categories %}
+        <section id="{{ category.slug }}" class="category-section">
+            <h2>{{ category.name }}</h2>
+
+            <div class="products">
+                {% for product in category.products.all %}
+                <div class="product-card">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <strong>${{ product.price }}</strong>
+                </div>
+                {% empty %}
+                <p>No products in this category.</p>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
