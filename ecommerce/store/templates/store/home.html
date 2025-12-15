@@ -33,6 +33,9 @@
             <div class="products">
                 {% for product in category.products.all %}
                 <div class="product-card">
+                    <div class="card-img">
+                        <img src="{{ product.product_img.url }}" alt="{{ product.name }}">
+                    </div>
                     <h3>{{ product.name }}</h3>
                     <p>{{ product.description }}</p>
                     <strong>${{ product.price }}</strong>

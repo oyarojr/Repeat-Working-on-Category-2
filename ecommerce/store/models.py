@@ -19,6 +19,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     stock_quantity = models.PositiveIntegerField(default=0)  # Non-negative stock count
+    product_img = models.ImageField(default='fallback.png', blank=True)
     
     def __str__(self):
         return self.name
